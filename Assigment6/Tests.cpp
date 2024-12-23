@@ -9,61 +9,65 @@ int main(int argc, char **argv)
     return RUN_ALL_TESTS();
 }
  
-TEST(MyClassTest, rTrue) 
-{ 
-    std::vector<float> v = {1.0f}; 
-    Class1 obj;  
-    MyClass<Class1> myClass(obj, 1, v);  
-    EXPECT_TRUE(myClass.foo());  
-} 
  
- 
-TEST(MyClassTest, r1False) 
+TEST(MyClassTest, True) 
 { 
     std::vector<float> emptyV; 
-    Class3 obj;  
-    MyClass<Class3> myClass(obj, -1, emptyV);  
-    EXPECT_FALSE(myClass.foo());  
+    MyClass<int> cls(1, 1, emptyV);   
+    EXPECT_TRUE(cls.foo());  
 } 
  
-TEST(Class1Test, r1True)  
-{  
-    std::vector<float> v = {1.0f};   
-    Class1 obj;  
-    EXPECT_TRUE(obj.bar(1, v));  
-}  
-  
-TEST(Class1Test, r3False)  
-{  
-    std::vector<float> v = {};  
-    Class1 obj;  
-    EXPECT_FALSE(obj.bar(-1, v));  
-}  
-  
-TEST(Class2Test, r4True)  
-{  
-    std::vector<float> v = {1.0f};    
-    Class2 obj;  
-    EXPECT_TRUE(obj.bar(1, v)); 
-}  
-  
-TEST(Class2Test, r5False)  
-{  
-    std::vector<float> v = {};    
-    Class2 obj;  
-    EXPECT_FALSE(obj.bar(1, v));  
-}  
- 
-TEST(Class3Test, r6True) 
+TEST(MyClassTest, False) 
 { 
-    std::vector<float> v = {1.0f}; 
-    Class3 obj; 
-    EXPECT_TRUE(obj.bar(-1, v)); 
+    std::vector<float> emptyV; 
+    MyClass<double> cls(1.02, 1.01, emptyV);  
+    EXPECT_FALSE(cls.foo());  
 } 
  
-TEST(Class3Test, r7False) 
+TEST(MyClassTest, Class1True) 
 { 
-    std::vector<float> v = {1.0f}; 
+    std::vector<float> emptyV; 
+    Class1 obj; 
+    MyClass<Class1> a(obj, 10, emptyV); 
+    EXPECT_TRUE(a.foo());  
+} 
+ 
+TEST(MyClassTest, Class1False) 
+{ 
+    std::vector<float> emptyV; 
+    Class1 obj; 
+    MyClass<Class1> a(obj, 0, emptyV);  
+    EXPECT_FALSE(a.foo());   
+} 
+ 
+TEST(MyClassTest, Class2True) 
+{ 
+    std::vector<float> v = {1.01}; 
+    Class2 obj; 
+    MyClass<Class2> a(obj, 10, v);  
+    EXPECT_TRUE(a.foo());  
+} 
+ 
+TEST(MyClassTest, Class2False) 
+{ 
+    std::vector<float> v = {}; 
+    Class2 obj; 
+    MyClass<Class2> a(obj, 10, v); 
+    EXPECT_FALSE(a.foo());  
+} 
+ 
+TEST(MyClassTest, Class3True) 
+{ 
+    std::vector<float> v = {1.01}; 
     Class3 obj; 
-    EXPECT_FALSE(obj.bar(1, v)); 
+    MyClass<Class3> a(obj, -1, v);  
+    EXPECT_TRUE(a.foo());  
+} 
+ 
+TEST(MyClassTest, Class3False) 
+{ 
+    std::vector<float> v = {1.01}; 
+    Class3 obj; 
+    MyClass<Class3> a(obj, 10, v);  
+    EXPECT_FALSE(a.foo());  
 }
