@@ -1,3 +1,4 @@
+/*Yakubovskaya Anastasya st130155@student.spbu.ru Zadacha6*/
 #include "gtest/gtest.h" 
 #include "Class.h" 
 #include "13Classes.h" 
